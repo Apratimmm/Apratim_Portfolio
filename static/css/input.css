@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: 'JetBrains Mono', monospace;
+        @apply scroll-smooth antialiased;
+    }
+}
+
+@layer components {
+    .content-section {
+        @apply hidden;
+        animation: slideUp 0.4s ease-out;
+    }
+
+    .content-section.active {
+        @apply block;
+    }
+
+    #hobbies.active {
+        @apply flex;
+    }
+
+    .nav-button.active {
+        @apply underline font-bold;
+    }
+
+    .custom-border {
+        border: 2px solid black;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
+::selection {
+    background: #000;
+    color: #fff;
+}
