@@ -1,26 +1,18 @@
 #!/bin/bash
 
-# Comprehensive build script for Vercel
-echo "=== Starting Vercel Build ==="
+# Simple and robust build script
+echo "=== Starting Build ==="
 
-# 1. Install Node.js dependencies & Build Tailwind
-echo "Installing Node.js dependencies..."
+# 1. Install Node.js dependencies
+echo "Installing dependencies..."
 npm install
 
-echo "Building Tailwind CSS..."
-# Explicitly use the local tailwindcss binary
-./node_modules/.bin/tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify
+# 2. Build Tailwind CSS
+echo "Building Tailwind..."
+# Generate the output.css directly into the static folder
+npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify
 
-# 2. Try to run collectstatic (to support WhiteNoise)
-# We install minimal dependencies needed for collectstatic during the static build step
-echo "Installing Python dependencies for collectstatic..."
-pip install django whitenoise pillow
-
-echo "Collecting static files..."
-mkdir -p staticfiles
-python manage.py collectstatic --noinput --clear
-
-echo "Checking staticfiles directory..."
-ls -R staticfiles
+echo "Checking static files..."
+ls -R static
 
 echo "=== Build Complete ==="
